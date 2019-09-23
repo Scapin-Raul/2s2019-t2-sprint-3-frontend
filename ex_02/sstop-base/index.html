@@ -43,9 +43,40 @@
     </div>
 
     <script>
+    const tabela = document.querySelector("#tabela-lista-corpo");
     
+    window.onload = () => {
+        
+        let estilos = [];
+    
+        const url = "http://localhost:5000/api/Estilos";
+        
+        fetch(url)
+        .then(resposta => resposta.json())
+        .then(data => preencherTabela(data))
+        .catch(error => console.error(error));        
+    
+    
+        function preencherTabela(estilos){
+            estilos.forEach(element =>{
+                
+            const tr = document.createElement("tr");
+            const td_idEstilo = document.createElement("td");
+            const td_nome = document.createElement("td");
+    
+            td_idEstilo.textContent = element.idEstilo;
+            td_nome.textContent = element.nome;
+    
+            tabela.appendChild(tr);
+            tr.appendChild(td_idEstilo);
+            tr.appendChild(td_nome);
+        });
+        };
+    
+    };
+        
+        
     </script>
-    
 </body>
 
 </html>

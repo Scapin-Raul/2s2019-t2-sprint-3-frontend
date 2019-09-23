@@ -89,6 +89,43 @@
       const inputCategoria = document.querySelector(".class__categoria");
       const btnCadastrar = document.querySelector("#btn__cadastrar");
       
+      const tabela = document.querySelector("#tabela-lista-corpo");
+
+      window.onload = () => {
+        
+        let categorias = [];
+
+        const url = "http://192.168.7.85:5000/api/categorias";
+        
+        fetch(url)
+          .then(resposta => resposta.json())
+        .then(data => preencherTabela(data))
+        .catch(error => console.error(error));        
+
+
+        function preencherTabela(categorias){
+          categorias.forEach(element =>{
+                  
+            const tr = document.createElement("tr");
+            const td_id = document.createElement("td");
+            const td_nome = document.createElement("td");
+    
+            td_id.textContent = element.idCategoria;
+            td_nome.textContent = element.nome;
+    
+            tabela.appendChild(tr);
+            tr.appendChild(td_id);
+            tr.appendChild(td_nome);
+        });
+
+      };
+
+
+
+
+      };
+
+
       btnCadastrar.addEventListener("click", function(){ 
         event.preventDefault();
         // console.log(inputCategoria.value);

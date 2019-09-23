@@ -12,7 +12,7 @@
 
 <body>
     <div class="container">
-        <div class="row justify-content-between">
+        <!-- <div class="row justify-content-between">
             <div class="col-10">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -25,7 +25,7 @@
             <div class="col-2">
                 <input class="btn btn-primary" type="submit" value="Cadastrar" id="btnCadastrar" />
             </div>
-        </div>
+        </div> -->
 
         <div class="row">
             <div class="col-12">
@@ -34,6 +34,7 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Nome</th>
+                            <th scope="col">Estilo</th>
                         </tr>
                     </thead>
                     <tbody id="tabela-lista-corpo"></tbody>
@@ -43,9 +44,43 @@
     </div>
 
     <script>
+    const tabela = document.querySelector("#tabela-lista-corpo");
     
+    window.onload = () => {
+        
+        let estilos = [];
+        
+        const url = "http://localhost:5000/api/Artistas";
+        
+        fetch(url)
+        .then(resposta => resposta.json())
+        .then(data => preencherTabela(data))
+        .catch(error => console.error(error));        
+    
+    
+        function preencherTabela(estilos){
+            estilos.forEach(element =>{
+                
+            const tr = document.createElement("tr");
+            const td_idArtista = document.createElement("td");
+            const td_nome = document.createElement("td");
+            const td_estilo = document.createElement("td");
+
+            td_idArtista.textContent = element.idArtista;
+            td_nome.textContent = element.nome;
+            td_estilo.textContent = element.estilo.nome;
+    
+            tabela.appendChild(tr);
+            tr.appendChild(td_idArtista);
+            tr.appendChild(td_nome);
+            tr.appendChild(td_estilo);
+        });
+        };
+    
+    };
     </script>
-    
+        
+        
 </body>
 
 </html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<head>
+
+    <title>InLock - Personagens</title>
+
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        img{
+            width: 100px;
+            height: 100px;
+        }
+            
+    </style>
+
+</head>
+
+<body>
+
+    <table id="tabela-lista">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Título</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+
+        <tbody id="tabela-lista-corpo"></tbody>
+    </table>
+
+    <script>
+
+
+    const tabela = document.querySelector("#tabela-lista-corpo");
+
+window.onload = () => {
+  
+  let personagens = [];
+
+  const url = "https://salty-atoll-57329.herokuapp.com/Personagens";
+  
+  fetch(url)
+    .then(resposta => resposta.json())
+  .then(data => preencherTabela(data))
+  .catch(error => console.error(error));        
+
+
+  function preencherTabela(personagens){
+    personagens.forEach(element =>{
+            
+      const tr = document.createElement("tr");
+      const td_nome = document.createElement("td");
+      const td_titulo = document.createElement("td");
+      var td_urlImagem = document.createElement("img");
+
+      td_nome.textContent = element.nome;
+      td_titulo.textContent = element.lancamento;
+      td_urlImagem.src = element.urlImagem;
+    //   td_urlImagem.replaceWith('AAA',element.urlImagem) = element.urlImagem;
+
+      tabela.appendChild(tr);
+      tr.appendChild(td_nome);
+      tr.appendChild(td_titulo);
+      tr.appendChild(td_urlImagem);
+    });
+    };
+
+};
+
+
+    </script>
+
+</body>
+
+</html>
