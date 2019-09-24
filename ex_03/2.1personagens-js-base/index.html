@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exercícios</title>   
+
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <script>
+        let personagens = [{
+            nome: "Capitão Cometa",
+            dataAparicao: 1951,
+            editora: "DC"
+        }, {
+            nome: "Lanterna Verde",
+            dataAparicao: 1940,
+            editora: "DC"
+        }, {
+            nome: "Ciborgue",
+            dataAparicao: 1980,
+            editora: "DC"
+        }, {
+            nome: "Homem Aranha",
+            dataAparicao: 1962,
+            editora: "Marvel"
+        }, {
+            nome: "Homem de Ferro",
+            dataAparicao: 1963,
+            editora: "Marvel"
+        }, {
+            nome: "Capitão América",
+            dataAparicao: 1940,
+            editora: "Marvel"
+        }];
+
+        //DESAFIO 1
+    // let soMarvel = personagens.filter(e =>{
+    //     if(e.editora == "Marvel") return e;
+    // })
+    // console.log(soMarvel);
+
+        //DESAFIO 2
+    // let mais1950 = personagens.filter(e =>{
+    //     if(e.dataAparicao > 1950) return e;
+    // })
+    // console.log(mais1950);
+
+        //DESAFIO 3
+    // let nomes = personagens.map(element =>{
+    //     return element.nome;
+    // })
+    // console.log(nomes);
+        
+        //DESAFIO 4
+    // personagens.push({
+    //     nome: "Capitã Marvel",
+    //     dataAparicao: 1977,
+    //     editora: "Marvel"
+    // });
+    // console.log(personagens);
+
+        //DESAFIO 5
+    // let soMarvel = personagens.filter(e =>{
+    //     if(e.editora == "Marvel") return e;
+    // })
+    // console.log(soMarvel.length);
+
+        //DESAFIO EXTRA
+        //1
+    // let idades = personagens.map(element =>{
+    //     return 2019 - element.dataAparicao;
+    // })
+    // let soma = idades.reduce((prevValue, Element) => {
+    //     return prevValue + Element
+    // });
+    // console.log(soma);
+
+        //2
+    // let personagens_2 = [];
+    // personagens_2 = personagens.map(e =>{
+    //     return {nome : e.nome, idade : 2019 - e.dataAparicao}
+    // });
+    // console.log(personagens_2);
+
+
+    </script>
+</body>
+
+</html>

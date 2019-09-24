@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+
+<head>
+
+    <title>Exercícios</title>
+
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <script>
+        let times = [{
+            nome: "Liverpool",
+            vitorias: 23,
+            empates: 7,
+            derrotas:1,
+            golsproprio:70,
+            golscontra:52
+        }, {
+            nome: "City",
+            vitorias: 24,
+            empates: 2,
+            derrotas:4,
+            golsproprio:79,
+            golscontra:21
+        }, {
+            nome: "Tottenhan",
+            vitorias: 20,
+            empates: 1,
+            derrotas:9,
+            golsproprio:57,
+            golscontra:32
+        }, {
+            nome: "Arsenal",
+            vitorias: 18,
+            empates: 6,
+            derrotas:6,
+            golsproprio:63,
+            golscontra:39
+        }, {
+            nome: "Manchester United",
+            vitorias: 17,
+            empates: 7,
+            derrotas:6,
+            golsproprio:58,
+            golscontra:40
+        }, {
+            nome: "Chelsea",
+            vitorias: 17,
+            empates: 6,
+            derrotas:7,
+            golsproprio:50,
+            golscontra:33
+        }];
+
+        //DESAFIO 1
+    // let vitorias20 = times.filter(e =>{
+    //     if (e.vitorias >= 20) return e;
+    // })
+    // console.log(vitorias20);
+
+        //DESAFIO 2
+    // let nomes = times.map(e =>{
+    //     return e.nome;
+    // })
+    // console.log(nomes);
+
+        //DESAFIO 3
+    // times.push({
+    //         nome: "Wolves",
+    //         vitorias: 12,
+    //         empates: 8,
+    //         derrotas:10,
+    //         golsproprio:38,
+    //         golscontra:36
+    //     });
+    // console.log(times);
+
+        //DESAFIO 4
+    // let times_2 = [];
+    // times_2 = times.map(e =>{
+    //     return {nome : e.nome, qndJogos : e.vitorias + e.derrotas + e.empates, vitorias : e.vitorias, empates : e.empates, derrotas : e.derrotas, golsproprio : e.golsproprio, golscontra : e.golscontra, saldodeGol : e.golsproprio - e.golscontra}
+    // });
+    // console.log(times_2);
+
+        //DESAFIO 5
+    // let jogosTime = times.map(e =>{
+    //     return e.vitorias + e.derrotas + e.empates;
+    // })
+    // let soma = jogosTime.reduce((prevValue, Element) => {
+    //     return prevValue + Element
+    // });
+    // let jogosCampeonato = soma/2;
+    // console.log(jogosCampeonato, soma);
+
+
+    </script>
+</body>
+
+</html>
