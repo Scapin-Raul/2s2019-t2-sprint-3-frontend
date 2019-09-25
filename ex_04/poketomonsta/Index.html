@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>POCKETO MONSTA</title>
+
+<style>
+    body{
+        text-align: center;
+    }
+    #container{
+        display: flex;
+    }
+    #container div{
+        width: 50%;
+    }
+</style>
+           
+
+</head>
+<body>
+    <h1>BUSCAR POKEMAO :D</h1>
+
+<form action="">
+    <label for="input">Digite o nome ou id para buscar:</label> <br>
+    <input id="input" type="text"><br>
+    <label for="check_pokemon">Pokemon:</label>
+    <input type="radio" name="tipo" value="pokemon" id="check_pokemon" checked> 
+    <label for="check_habilidade">Habilidade:</label>
+    <input type="radio" name="tipo" value="habilidade" id="check_habilidade"> <br>
+    
+    <input type="submit" id="botao" value="Buscar" onclick="Buscar()">
+</form>
+<div id="container">
+
+    <div id="Pokemon"></div>
+    
+    <div id="Habilidade"></div>
+</div>
+
+<Script>
+    const Input = document.querySelector("#input");
+    const Botao = document.querySelector("#botao");
+    const div_Pokemon = document.querySelector("#Pokemon")
+    const div_Habilidade = document.querySelector("#Habilidade")
+    var radios = document.getElementsByName("tipo");
+
+
+    function Buscar(){
+        event.preventDefault();
+
+        for (var i = 0; i < radios.length; i++) {
+            if (radios[i].checked) {
+                console.log("Escolheu: " + radios[i].value);
+                var check_selecionado = radios[i].value;
+            }
+        }
+        if(check_selecionado == "pokemon"){
+            const url = "https://pokeapi.co/api/v2/pokemon/"+Input.value;
+            console.log(url);
+            fetch(url)
+            .then(resposta => resposta.json())
+            .then(data => preencherPokemon(data))
+            .catch(error => preencherPokemon(error)); 
+        }else{
+            const url = "https://pokeapi.co/api/v2/ability/"+Input.value;
+            console.log(url);
+            fetch(url)
+            .then(resposta => resposta.json())
+            .then(data => preencherHabilidade(data))
+            .catch(error => preencherHabilidade(error)); 
+        }
+    }
+    
+
+    function preencherHabilidade(habilidade) {
+        if(habilidade.pokemon == null){
+            console.log("Erro: "+habilidade);
+            var falha = "Não foi encontrado nenhuma habilidade com este nome ou id";
+            var p = document.createElement("p");
+            
+            p.textContent = falha;
+            
+            div_Habilidade.appendChild(p);
+        }
+        else{
+            var nome = habilidade.name;
+            var pokemons = [];
+            pokemons = habilidade.pokemon;
+
+            var tipo = document.createElement("p");
+            var p = document.createElement("p");
+            var pp = document.createElement("p");
+            p.textContent = "Nome: "+nome;
+            tipo.textContent = "Tipo: Habilidade";
+
+            div_Habilidade.appendChild(tipo);
+            div_Habilidade.appendChild(p);
+            console.log(pokemons)
+            var textoPP = "Pokemons: "
+
+            for (let index = 0; index < pokemons.length; index++) {
+                const element = pokemons[index];
+                if(index == (pokemons.length - 1)){
+                    textoPP += element.pokemon.name +".";
+                } 
+                else{
+                    textoPP += element.pokemon.name +", ";
+                } 
+            }
+
+            // pokemons.forEach(element => {
+            //     textoPP += element.pokemon.name +", ";
+            // });
+                pp.textContent = textoPP;
+                div_Habilidade.appendChild(pp);
+            
+        }
+
+    }
+
+    function preencherPokemon(pokemon){
+
+        if(pokemon.species == null){
+            console.log("Erro: "+pokemon);
+            var falha = "Não foi encontrado nenhum pokemon com este nome ou id";
+            var p = document.createElement("p");
+            
+            p.textContent = falha;
+            
+            div_Pokemon.appendChild(p);
+        } 
+        else{
+            var nome = pokemon.species.name;
+            var foto = pokemon.sprites.front_default;
+            var habilidades = pokemon.abilities;
+
+            var tipo = document.createElement("p");
+            tipo.textContent = "Tipo: Pokemon";
+            div_Pokemon.appendChild(tipo);
+        
+
+            var p = document.createElement("p");
+            var img = document.createElement("img");
+            var ph = document.createElement("p");
+
+
+            p.textContent = "Nome: "+nome;
+            img.src= foto;
+
+            var textoPH = "Habilidades: "
+
+            for (let index = 0; index < habilidades.length; index++) {
+                const element = habilidades[index];
+                if(index == (habilidades.length - 1)){
+                    textoPH += element.ability.name +".";
+                } 
+                else{
+                    textoPH += element.ability.name +", ";
+                } 
+            }
+
+            ph.textContent = textoPH;
+
+            div_Pokemon.appendChild(p);
+            div_Pokemon.appendChild(img);
+            div_Pokemon.appendChild(ph);
+        }
+
+          
+    };
+
+
+
+</Script>
+
+</body>
+</html>

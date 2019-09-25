@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>PROCURARAR CEP É AQUI MESMO ASDAOKWPD9IQ0WUS</h1>
+
+    <div id="div">
+        <h2>Preencha seu endereço :D</h2>
+        <p id="p"></p>
+    </div>
+
+    <form action="">
+        <label for="cep">cep</label>
+        <input type="text" id="cep" onfocusout="CEP()">
+        <label for="logradouro">logradouro</label>
+        <input type="text" id="logradouro">
+        <label for="complemento">complemento</label>
+        <input type="text" id="complemento">
+        <label for="bairro">bairro</label>
+        <input type="text" id="bairro">
+        <label for="localidade">localidade</label>
+        <input type="text" id="localidade">
+        <label for="uf">uf</label>
+        <input type="text" id="uf">
+    </form>
+
+<script>
+    const inputCep = document.querySelector("#cep");
+    const inputLog = document.querySelector("#logradouro");
+    const inputCompl = document.querySelector("#complemento");
+    const inputBairro = document.querySelector("#bairro");
+    const inputLocal = document.querySelector("#localidade");
+    const inputUf = document.querySelector("#uf");
+    const div = document.querySelector("#div");
+    const p = document.querySelector("#p");
+
+    function CEP(){
+        if(typeof inputCep.value === 'number'){
+        const url = "https://viacep.com.br/ws/"+inputCep.value+"/json/";
+            console.log(url);
+            fetch(url)
+            .then(resposta => resposta.json())
+            .then(data => alterarInputs(data))
+            .catch(error => alterarInputs(error)); 
+        }
+        else{
+            alterarInputs( {erro: true });
+        }
+    }
+
+    function alterarInputs(dados){
+        if(dados.erro){ //ERRO
+            console.log('errokkkkkkkkkkkkkkkk')
+            
+            p.innerHTML = "ERRO KKKKKKKKKKKKKKKKKKKKK";
+            
+
+            inputLog.value = ""; 
+            inputCompl.value = ""; 
+            inputBairro.value = ""; 
+            inputLocal.value = ""; 
+            inputUf.value = ""; 
+
+        } else{
+            inputLog.value = dados.logradouro;
+            inputCompl.value = dados.complemento;
+            inputBairro.value = dados.bairro;
+            inputLocal.value = dados.localidade;
+            inputUf.value = dados.uf;
+            p.innerHTML = "";
+        }
+    }
+
+
+
+</script>
+
+
+</body>
+</html>
