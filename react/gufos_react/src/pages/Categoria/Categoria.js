@@ -13,23 +13,47 @@ class Categoria extends Component{
                 // {idCategoria: 1, nome: "Design"},
                 // {idCategoria: 2, nome: "Joojos"},
                 // {idCategoria: 3, nome: "Meetup"},
-            ]
+            ],
+            nome: ''
         }
     }
 
     componentDidMount(){
-        fetch('http://localhost:5000/api/categorias')
+        fetch('http://192.168.7.85:5000/api/categorias')
         .then(response => response.json())
         .then(data => this.setState({ lista: data}))
         .catch(error => console.log(error));
     }
 
+    atualizarNome = (e) =>{
+      e.preventDefault();
+      this.setState({nome: e.target.value});
+    }
+
+
     adicionarItem = (e) =>{
-        e.preventDefault();
-        this.setState({lista: [
-            {idCategoria: 4 ,nome: 'novacategoria'}
-        ]});
+      e.preventDefault();
+      fetch('http://192.168.7.85:5000/api/categorias',{
+        method: 'POST', body: JSON.stringify({nome: this.state.nome}),
+        headers: {"Content-Type": "application/json"}
+      })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.log(error));
+
+      
     };
+      
+    adicionaCategoria = (e) =>{
+      fetch('http://192.168.7.85:5000/api/categorias')
+        .then(response => response.json())
+        .then(data => this.setState({ lista: data}))
+        .catch(error => console.log(error));
+
+
+    }    
+
+
 
     render(){
          return (
@@ -84,6 +108,8 @@ class Categoria extends Component{
                         className="class__categoria"
                         id="input__categoria"
                         placeholder="tipo do evento"
+                        value={this.state.nome}
+                        onChange={this.atualizarNome}
                         />
                       <button
                         id="btn__cadastrar"

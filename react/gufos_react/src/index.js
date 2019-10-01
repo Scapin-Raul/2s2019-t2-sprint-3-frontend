@@ -13,7 +13,7 @@ const routing = (
         <div>
             <Switch>
                 <Route exact path="/" component={App}/>
-                <Route path="/categoria" component={Categoria}/>
+                <Route path="/categorias" component={Categoria}/>
                 <Route component={NaoEncontrado} />
             </Switch>
         </div>
