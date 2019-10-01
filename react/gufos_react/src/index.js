@@ -3,17 +3,37 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './pages/Home/App';
 import Categoria from './pages/Categoria/Categoria';
+import Login from './pages/Login/Login';
 import NaoEncontrado from './pages/NaoEncontrado/NaoEncontrado';
 import * as serviceWorker from './serviceWorker';
 
-import {Route, Link, BrowserRouter as Router, Switch} from 'react-router-dom'
+import {Route, Link, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom'
+
+const RotaPrivada = ({component: Component, ...rest}) => (
+    <Route
+        {...rest}
+        render={props => 
+            localStorage.getItem("Token") !== null ? 
+                <Component {...props}/> 
+                :
+                <Redirect
+                    to={{ pathname: '/login', state: {from: props.location} }}
+                />
+
+        }
+    >
+
+
+    </Route>
+)
 
 const routing = (
     <Router>
         <div>
             <Switch>
                 <Route exact path="/" component={App}/>
-                <Route path="/categorias" component={Categoria}/>
+                <RotaPrivada path="/categorias" component={Categoria}/>
+                <Route path="/login" component={Login}/>
                 <Route component={NaoEncontrado} />
             </Switch>
         </div>
